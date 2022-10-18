@@ -1,0 +1,14 @@
+# IGNORE ALL
+*/**/*
+*.*
+
+# ALLOW
+!public/**/*
+!src/**/*
+
+!.gitignore
+!.npmignore
+!package.json
+!README.md
+!tsconfig.json
+!webpack.config.js
