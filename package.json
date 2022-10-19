@@ -2,28 +2,28 @@
   "name": "ts-base",
   "version": "1.0.0",
   "description": "",
-  "private": true,
   "type": "module",
+  "private": "true",
   "scripts": {
-    "ts-build": "pnpm exec tsc",
-    "ts-watch": "pnpm exec tsc -w",
-    "test": "pnpm exec node ./dist/test/_lib.js",
-    "prestart": "pnpm run ts-build",
-    "start": "pnpm run ts-watch",
-    "poststart": "pnpm exec node ./dist/index.js",
-    "build": "pnpm exec webpack --config webpack.config.js"
-  },
-  "old-scripts": {
-    "build": "pnpm run ts-build"
+    "pretest": "pnpm exec tsc -p ./tsconfig.test.json",
+    "test": "pnpm exec node --test \"./dist/test/**/*.test.js\"",
+    "start": "pnpm exec node ./server.js",
+    "build": "pnpm exec webpack --config webpack.config.js",
+    "preactive-test": "pnpm run pretest",
+    "active-test": "pnpm exec node --test --watch "
   },
   "keywords": [],
   "author": "NicholasKoldys.dev",
   "license": "ISC",
   "packageManager": "pnpm@9.8.0+sha512.8e4c3550fb500e808dbc30bb0ce4dd1eb614e30b1c55245f211591ec2cdf9c611cabd34e1364b42f564bd54b3945ed0f49d61d1bbf2ec9bd74b866fcdc723276",
+  "comments": {
+    "prestart": "pnpm exec tsc -p ./tsconfig.json"
+  },
   "devDependencies": {
     "ts-loader": "^9.5.1",
     "typescript": "^5.6.3",
     "webpack": "^5.95.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   }
 }

@@ -11,4 +11,7 @@
 !package.json
 !README.md
 !tsconfig.json
+!tsconfig.test.json
+!server.js
 !webpack.config.js
+!xecute-.js
