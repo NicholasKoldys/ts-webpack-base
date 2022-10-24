@@ -5,12 +5,14 @@
   "type": "module",
   "private": "true",
   "scripts": {
+    "watch:ts": "pnpm exec tsc --watch",
+    "watch:node": "pnpm exec node --test --watch",
     "pretest": "pnpm exec tsc -p ./tsconfig.test.json",
     "test": "pnpm exec node --test \"./dist/test/**/*.test.js\"",
-    "start": "pnpm exec node ./server.js",
+    "serve": "pnpm exec node ./server.js",
     "build": "pnpm exec webpack --config webpack.config.js",
-    "preactive-test": "pnpm run pretest",
-    "active-test": "pnpm exec node --test --watch "
+    "prestart": "pnpm run pretest",
+    "start": "pnpm run \"/^watch:.*/\""
   },
   "keywords": [],
   "author": "NicholasKoldys.dev",
