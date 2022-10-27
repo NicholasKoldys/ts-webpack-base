@@ -27,8 +27,10 @@ export function TestsOf( SectionTitle: string = "Tests of :", suite: TestSuite )
             failures++;
             if( err instanceof Error ) {
                 results[test] = fLog( test, testCase );
-                console.log(err.message);
-                console.error(err.stack);
+                if( err.cause == false ) {
+                    console.log(err.message);
+                    console.error(err.stack);
+                }
             }
         }
     }
@@ -58,21 +60,21 @@ export function FastTestOf( suite: TestSuite ) {
 }
 
 
-export function assert( expression: boolean ) {
+export function assert( expression: boolean, isFailureCheck: boolean = false ) {
     if ( !expression ) {
-        throw new Error( 'assert(): FAILED' );
+        throw new Error( 'assert(): FAILED', { cause: isFailureCheck } );
     }
 }
 
-export function assertEquals( actual: any, expected: any ) {
+export function assertEquals( actual: any, expected: any, isFailureCheck: boolean = false ) {
     if ( expected != actual ) {
-        throw new Error( 'assertEquals() "' + expected + '" != "' + actual + '"' );
+        throw new Error( 'assertEquals() "' + expected + '" != "' + actual + '"', { cause: isFailureCheck } );
     }
 }
 
-export function assertStrictEquals( actual: any, expected: any ) {
+export function assertStrictEquals( actual: any, expected: any, isFailureCheck: boolean = false ) {
     if ( expected !== actual ) {
-        throw new Error( 'assertStrictEquals() "' + expected + '" !== "' + actual + '"' );
+        throw new Error( 'assertStrictEquals() "' + expected + '" !== "' + actual + '"', { cause: isFailureCheck } );
     }
 }
 
