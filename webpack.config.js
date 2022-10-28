@@ -1,5 +1,6 @@
 import { resolve, join } from 'node:path';
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { DeclarationWebpackPlugin, moduleType } from '@nicholaskoldys/declaration-webpack-plugin';
 
 const __dirname = import.meta.dirname;
 
@@ -9,16 +10,29 @@ const webpackConfig = {
   mode: 'development',
   entry: './src/main.ts',
   devtool: 'inline-source-map',
+  experiments: {
+    outputModule: true,
+  },
 
   output: {
-    filename: '[name].[contenthash:6].js',
+    filename: '[name].[contenthash:6].min.js',
+    library: {
+      type: 'modern-module',
+    },
     path: resolve(__dirname, 'dist'),
     clean: true,
     hashSalt: PROJECT_BUILD_VERSION, 
   },
 
+  infrastructureLogging: {
+    level: 'verbose',
+  },
+
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: [ '.tsx', '.ts', '.jsx', '.js' ],
+    extensionAlias: {
+      '.js': ['.js', '.ts', '.jsx'],
+    },
   },
 
   devServer: {
@@ -33,8 +47,15 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.m?tsx?$/,
+        use: [ 
+          { 
+            loader: 'ts-loader', 
+            options: { 
+              configFile: resolve(__dirname, './src/tsconfig.bundler.json') 
+            }
+          },
+        ],
         exclude: /node_modules/,
       },
     ],
@@ -55,6 +76,12 @@ const webpackConfig = {
   },
 
   plugins: [
+    new DeclarationWebpackPlugin({
+      moduleName: "main",
+      moduleType: moduleType.esm,
+      outputFile:'main.d.ts',
+      isFileCommented: true,
+    }),
     new HtmlWebpackPlugin({
       template: "./public/index.html",
       filename: "index.html",
@@ -70,7 +97,7 @@ const webpackConfig = {
       //   minifyURLs: true,
       // },
     }),
-  ]
+  ],
 };
 
 export default webpackConfig;
