@@ -1,0 +1,119 @@
+:root {
+  --primary-bg-color: #181414;
+  --secondary-bg-color: #2c2828;
+  --tetirary-bg-color: #29282c;
+  --special-bg-color: #000000;
+}
+
+html {
+  font-family: 'Courier New', Courier, monospace;
+  color: antiquewhite;
+}
+
+body {
+  margin: 0;
+  padding: 10vh 0 0 0;
+  min-height: 100dvh;
+  background-color: var(--primary-bg-color);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: red;
+}
+
+a:visited {
+  color: none;
+}
+
+p.tabbed {
+  padding-left: 2ch; 
+}
+
+.template {
+  display: none;
+}
+
+iframe#github-iframe {
+  color: white;
+  width: 100%;
+}
+
+div.flex-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.centered {
+  display: flex;
+  flex-direction: column;
+  width: 60vw;
+
+  background-color: var(--secondary-bg-color);
+  transition: width .5s linear;
+}
+
+header {
+  text-align: center;
+  padding: 4vh 2vw;
+
+  background-color: var(--tetirary-bg-color);
+}
+
+article {
+  padding: 2vh 1vw;
+}
+
+button {
+  display: block;
+  margin: 1em auto;
+  border-style: none;
+  border-radius: .5rem;
+  font-size: x-large;
+  font-weight: bolder;
+  background-color: rgb(101, 11, 29);
+  color: inherit;
+}
+
+.main {
+  color: inherit;
+  font-family: inherit;
+  font-size: 1.5ch;
+
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+
+  gap: 2vh;
+  padding: 0 2dvw;
+  min-height: 75dvh;
+}
+
+@media screen and (max-width: 1200px) {
+  
+  nav#side-nav {
+      display: none;
+  }
+  
+  nav#center-nav { 
+      display: block;
+  }
+
+  div#centered {
+      width: 80vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  
+  div#centered {
+      width: auto;
+  }
+}

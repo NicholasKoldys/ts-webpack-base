@@ -3,15 +3,23 @@
 *.*
 
 # ALLOW
-# !public/**/*
+!public/**/*
 !src/**/*
+!demo/**/*
+!dist/**/*
+!media/**/*
 
 !.gitignore
 !.npmignore
 !package.json
+!pnpm-lock.yaml
 !README.md
 !tsconfig.json
-!tsconfig.test.json
-!server.js
 !webpack.config.js
-!xecute-.js
+
+!server.js
+!xecute-start.sh
+
+# EXCEPTIONS
+src/omg/dont/show/this/nu6es/**/*
+node_modules
